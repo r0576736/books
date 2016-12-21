@@ -6,13 +6,30 @@
 
 var MongoClient = require('mongodb').MongoClient; //Mongodb module inladen, het MongoClient object
 
-var url = "mongodb://localhost:27017/books"; //standaardpoort van mongo; zonder dit kan hij niet laden
+var url = "mongodb://localhost:27017/booksdb"; //standaardpoort van mongo; zonder dit kan hij niet laden
                                                // /booksdb slaagt op dat dit de database is in mongo
 
-MongoClient.connect(url, function(error, db){ 
+var dal = [
+
+    connect(url, function(error, db){ 
     if (error)                                          // als er een error is; 
     throw new Error(error);                             // met alles stoppen; anders
     console.log("Connected succesfully to server");     // Succes geconnecteerd
-    db.close();                                         // db gesloten;
-}); 
+    db.close();  // db gesloten;
+        
+        
+    listBooks: function
+    
+    
+    insertBooks: function (book, callback){
+        this.connect(null, function(db){
+            db.collection('books').insert(book, function (err, result){
+                db.close();
+                callback();
+            });
+        });
+    }
+    
+}),
 
+module.exports = dal;
