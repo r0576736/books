@@ -23,10 +23,10 @@ app.get('/books', function(request, response){
         response.send(books);
         });
 
-app.post('/', function(request, response){
+app.post('/books', function(request, response){
     var book = new Book(teller++, request.body.name); //"naam" : "De prinses"
     books.push(book);
-    
+    response.status(201).send();
 });
 
 console.log("Hello World");
