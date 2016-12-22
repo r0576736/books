@@ -23,8 +23,10 @@ var Book = function(id, name){
 var books = [new Book(1, 'Harry Potter'), new Book(2, 'Harry Potter 2')];
 
 app.get('/books', function(request, response){
-        response.send(books);
-        });
+    dal.listBooks(function (result){         
+        response.send(result);
+    }) ;          
+});
 
 app.post('/books', function(request, response){
     var book = new Book(teller++, request.body.name);   //"naam" : "De prinses" teller voor ID ++
@@ -32,6 +34,7 @@ app.post('/books', function(request, response){
         response.status(201).send();
     }) ;          
 });
+
 
 console.log("Hello World");
 app.listen(54321);
